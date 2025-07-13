@@ -130,17 +130,23 @@ body {
     animation: confetti-fall 3s ease-out forwards;
 }
 
-@keyframes confetti-fall {
+@keyframes confetti-burst {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(150px) translateX(var(--drift)) rotate(360deg);
     opacity: 1;
   }
   100% {
-    transform: translateY(300px) rotate(720deg);
+    transform: translateY(300px) translateX(calc(var(--drift) * 2)) rotate(720deg);
     opacity: 0;
   }
 }
 
 .confetto {
-  animation: confetti-fall 2.5s ease-out forwards;
+  animation-timing-function: ease-out;
+  will-change: transform, opacity;
+  --drift: calc(20px - 40px * var(--rand));
 }
